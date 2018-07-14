@@ -8,6 +8,7 @@ package services;
 
 
 import domian.IComponent;
+import java.util.Collection;
 
 /**
  *
@@ -17,4 +18,6 @@ public interface IComponentRegistry {
     void Add(IComponent component) throws Exception;
     void Delete(String id);    
     void Update(IComponent component) throws Exception;
+    IComponent Get(String id) throws Exception;
+    Collection<IComponent> GetAll();
 }

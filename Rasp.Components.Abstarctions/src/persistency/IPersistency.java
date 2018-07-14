@@ -14,5 +14,5 @@ import java.util.Collection;
  */
 public interface IPersistency {
     void Persist(Collection<IComponent> components) throws Exception;
-    Collection<IComponent> Get() throws Exception;
+    Collection<IComponent> Read() throws Exception;
 }

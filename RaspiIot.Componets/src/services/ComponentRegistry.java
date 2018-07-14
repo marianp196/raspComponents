@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package componentPool;
+package services;
 
 
 import domian.IComponent;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,9 +20,9 @@ import services.IComponentRegistry;
  *
  * @author marian
  */
-public class ComponentPool implements IComponentRegistry, IComponentProvider {
+public class ComponentRegistry implements IComponentRegistry {
 
-    public ComponentPool(){
+    public ComponentRegistry(){
         _internStorage = new ArrayList<>();
     }
     
@@ -46,7 +47,7 @@ public class ComponentPool implements IComponentRegistry, IComponentProvider {
             
             _internStorage.remove(component);
         } catch (Exception ex) {
-            Logger.getLogger(ComponentPool.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComponentRegistry.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -60,10 +61,16 @@ public class ComponentPool implements IComponentRegistry, IComponentProvider {
         Delete(component.GetID());
         Add(component);
     }
+    
+     @Override
+    public IComponent Get(String id) throws Exception {
+        return get(id);
+    }
 
-    @Override
-    public <TState, TResult> IComponent<TState, TResult> Get(String id) throws Exception {
-        return (IComponent<TState, TResult>) get(id);
+    
+     @Override
+    public Collection<IComponent> GetAll() {
+        return _internStorage; //ToDO Clon ausgeben
     }
     
     private boolean  exists(String id) throws Exception{
@@ -81,6 +88,10 @@ public class ComponentPool implements IComponentRegistry, IComponentProvider {
         return result.isEmpty()? null : result.get(0);
     }
     
-    private ArrayList<IComponent> _internStorage;
+  
     
+    private ArrayList<IComponent> _internStorage;
+
+   
+
 }
