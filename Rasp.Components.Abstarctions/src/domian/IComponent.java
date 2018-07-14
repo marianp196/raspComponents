@@ -1,4 +1,4 @@
-package abstractions.domian;
+package domian;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

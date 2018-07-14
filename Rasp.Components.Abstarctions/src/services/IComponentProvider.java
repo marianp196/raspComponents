@@ -1,4 +1,6 @@
-package abstractions;
+package services;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,7 +9,7 @@ package abstractions;
  */
 
 
-import abstractions.domian.IComponent;
+import domian.IComponent;
 
 /**
  *

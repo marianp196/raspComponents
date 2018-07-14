@@ -1,8 +1,9 @@
 package factory;
 
-import abstractions.IComponentProvider;
-import abstractions.IComponentRegistry;
+
 import componentPool.ComponentPool;
+import services.IComponentProvider;
+import services.IComponentRegistry;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

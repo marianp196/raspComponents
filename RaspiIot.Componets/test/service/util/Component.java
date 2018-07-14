@@ -5,7 +5,7 @@
  */
 package service.util;
 
-import abstractions.domian.IComponent;
+import domian.IComponent;
 
 /**
  *

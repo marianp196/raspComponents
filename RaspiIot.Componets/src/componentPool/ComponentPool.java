@@ -5,14 +5,15 @@
  */
 package componentPool;
 
-import abstractions.IComponentProvider;
-import abstractions.IComponentRegistry;
-import abstractions.domian.IComponent;
+
+import domian.IComponent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import services.IComponentProvider;
+import services.IComponentRegistry;
 
 /**
  *
