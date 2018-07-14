@@ -1,0 +1,8 @@
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+/Brauerei.Front/nbproject/private/
+/Brauerei.Database/nbproject/private/
