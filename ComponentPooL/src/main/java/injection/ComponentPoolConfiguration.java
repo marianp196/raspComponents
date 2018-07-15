@@ -15,7 +15,7 @@ import services.IComponentProvider;
  *
  * @author marian
  */
-public class Configuration extends AbstractModule{
+public class ComponentPoolConfiguration extends AbstractModule{
     @Override
     protected void configure() {
         bind(IDatasourceReader.class).to(DatasourceReader.class);
