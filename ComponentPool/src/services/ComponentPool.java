@@ -13,18 +13,19 @@ import component.IComponent;
  */
 public class ComponentPool implements IComponentProvider{
 
-    @Override
-    public <TState, TResult> IComponent<TState, TResult> Get(String id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
     @Override
     public void ReloadAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void Reload(String id) throws Exception {
+    public <TState, TResult> IComponent<TState, TResult> Get(String id, String groupId) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void Reload(String id, String groupId) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

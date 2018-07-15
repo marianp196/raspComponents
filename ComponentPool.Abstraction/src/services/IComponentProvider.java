@@ -16,8 +16,8 @@ import component.IComponent;
  * @author marian
  */
 public interface IComponentProvider {
-    <TState, TResult> IComponent<TState, TResult> Get(String id) throws Exception;
+    <TState, TResult> IComponent<TState, TResult> Get(String id, String groupId) throws Exception;
     void ReloadAll();
-    void Reload(String id) throws Exception;
+    void Reload(String id, String groupId) throws Exception;
 }
  

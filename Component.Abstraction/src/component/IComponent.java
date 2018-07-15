@@ -12,5 +12,6 @@ package component;
  */
 public interface IComponent<TState, TResult> {
     String GetID();
+    String GetGroupID();
     TResult Excute(TState state) throws Exception; 
 }
