@@ -8,6 +8,7 @@ package dataSourceReader;
 import component.IComponent;
 import dataSource.IDataSource;
 import dataSource.IDataSourceProvider;
+import java.util.ArrayList;
 import java.util.Collection;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -23,7 +24,23 @@ public class DatasourceReader implements IDatasourceReader{
     
     @Override
     public Collection<IComponent> Get() {
-        throw new NotImplementedException();
+        ArrayList<IComponent> result = new ArrayList<>();
+        
+        for(IDataSource dataSource : _dataSources)
+            for(IComponent component : dataSource.Read())
+            {
+                if(!exists(result, component.GetID(), component.GetGroupID()))
+                    result.add(component);
+                else
+                {    /*Throw Exception*/ }
+            }
+        
+        return result;
+    }
+    
+    private boolean exists(Collection<IComponent> data, String id, String groupId){
+        return data.stream().filter(c -> c.GetID().equals(id) && c.GetGroupID().equals(groupId))
+                .count() > 1;
     }
     
     private Collection<IDataSource> _dataSources;
