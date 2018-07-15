@@ -5,6 +5,7 @@
  */
 package dataSourceReader;
 
+import com.google.inject.Inject;
 import component.IComponent;
 import dataSource.IDataSource;
 import dataSource.IDataSourceProvider;
@@ -16,8 +17,10 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  *
  * @author marian
  */
+
 public class DatasourceReader implements IDatasourceReader{
     
+    @Inject
     public DatasourceReader(IDataSourceProvider dataSources){
         _dataSources = dataSources.Get();
     }

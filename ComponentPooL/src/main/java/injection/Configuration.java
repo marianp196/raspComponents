@@ -5,10 +5,20 @@
  */
 package injection;
 
+import com.google.inject.AbstractModule;
+import dataSourceReader.DatasourceReader;
+import dataSourceReader.IDatasourceReader;
+import services.ComponentPool;
+import services.IComponentProvider;
+
 /**
  *
  * @author marian
  */
-public class Configuration {
-    
+public class Configuration extends AbstractModule{
+    @Override
+    protected void configure() {
+        bind(IDatasourceReader.class).to(DatasourceReader.class);
+        bind(IComponentProvider.class).to(ComponentPool.class);
+    }
 }
