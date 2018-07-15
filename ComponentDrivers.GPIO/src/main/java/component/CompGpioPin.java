@@ -5,6 +5,10 @@
  */
 package component;
 
+import gpio.ControlerFactory;
+import gpioDriver.GpioPin;
+import javax.naming.ldap.ControlFactory;
+
 /**
  *
  * @author marian
@@ -14,6 +18,7 @@ public class CompGpioPin implements IComponent<PinState, PinState>{
     public CompGpioPin(String id, int pin){
         _id = id;
         _pin = pin;
+        _gpioPin = new GpioPin(ControlerFactory.getInstance(), _pin);
     }
     
     @Override
@@ -28,9 +33,24 @@ public class CompGpioPin implements IComponent<PinState, PinState>{
 
     @Override
     public PinState Excute(PinState state) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        _gpioPin.SetMode(state.Out);
+        
+        PinState result = new PinState();
+        if(state.Out){
+            if(state.State == null)
+                throw new Exception("state is null");
+            _gpioPin.SetState(state.State);
+            result.Out = true;
+            result.State = state.State;            
+        }else{
+            result.State = _gpioPin.GetState();
+            result.Out = false;
+        }
+        
+        return result;
     }
     
     private String _id;
-    private int _pin;    
+    private int _pin;
+    private GpioPin _gpioPin;
 }
