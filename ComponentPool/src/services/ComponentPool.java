@@ -42,7 +42,7 @@ public class ComponentPool implements IComponentProvider{
         if(result == null)
             throw new KeyException("compnenet doesn't exists");
         
-        return (IComponent<TState, TResult>) result;
+        return (IComponent<TState, TResult>) result;//ToDO Exceptio definieren wenn typ nicht passt
     }
 
     @Override
