@@ -7,3 +7,8 @@ nbdist/
 /Brauerei.Front/nbproject/private/
 /Brauerei.Database/nbproject/private/
 /ComponentDrivers.GPIO/target/
+/Component.Abstraction/target/
+/ComponentPool.Abstraction/target/
+/ComponentPool/target/
+/Component.Web/target/
+/WebApplication1/nbproject/private/
