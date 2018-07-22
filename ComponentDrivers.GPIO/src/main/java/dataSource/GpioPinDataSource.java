@@ -5,7 +5,9 @@
  */
 package dataSource;
 
+import component.CompGpioPin;
 import component.IComponent;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -16,7 +18,9 @@ public class GpioPinDataSource implements IDataSource{
     
     @Override
     public Collection<IComponent> Read() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<IComponent> result = new ArrayList<>();
+        result.add(new CompGpioPin("test", 0));
+        return result;
     }
     /*
     ar_mapping.add(new Pi4JPinMap(3, RaspiPin.GPIO_08));

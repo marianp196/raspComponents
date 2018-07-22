@@ -18,7 +18,7 @@ public class CompGpioPin implements IComponent<PinState, PinState>{
     public CompGpioPin(String id, int pin){
         _id = id;
         _pin = pin;
-        _gpioPin = new GpioPin(ControlerFactory.getInstance(), _pin);
+        //_gpioPin = new GpioPin(ControlerFactory.getInstance(), _pin);
     }
     
     @Override
@@ -33,7 +33,9 @@ public class CompGpioPin implements IComponent<PinState, PinState>{
 
     @Override
     public PinState Excute(PinState state) throws Exception {
-        _gpioPin.SetMode(state.Out);
+        return state;
+        
+        /*_gpioPin.SetMode(state.Out);
         
         PinState result = new PinState();
         if(state.Out){
@@ -47,7 +49,7 @@ public class CompGpioPin implements IComponent<PinState, PinState>{
             result.Out = false;
         }
         
-        return result;
+        return result;*/
     }
     
     private String _id;
