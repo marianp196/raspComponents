@@ -17,13 +17,14 @@ import services.IComponentProvider;
  * @author marian
  */
 public class ApllicationBuilder {
-    public static IComponentProvider Build(){
+    public IComponentProvider Build(){
         if(_injector == null)        
             _injector = getInjector();
+        System.out.println("fkdjfid");
         return _injector.getInstance(IComponentProvider.class);
     }
 
-    private static Injector getInjector() {
+    private Injector getInjector() {
         ArrayList<Module> configuartions = new ArrayList<Module>();
         configuartions.add(new WebConfiguration());
         configuartions.add(new ComponentPoolConfiguration());
@@ -31,5 +32,5 @@ public class ApllicationBuilder {
         return injector;
     }
     
-    private static Injector _injector;
+    private Injector _injector;
 }
