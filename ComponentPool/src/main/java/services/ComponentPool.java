@@ -5,8 +5,6 @@
  */
 package services;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import component.IComponent;
 import dataSourceReader.IDatasourceReader;
 import java.security.KeyException;
@@ -18,10 +16,9 @@ import java.util.stream.Collectors;
  *
  * @author marian
  */
-@Singleton
 public class ComponentPool implements IComponentProvider{
 
-    @Inject
+  
     public ComponentPool(IDatasourceReader datasourceReader){
         _dataDatasourceReader = datasourceReader;
         _cachedComponents = null;

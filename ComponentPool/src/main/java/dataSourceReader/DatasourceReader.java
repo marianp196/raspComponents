@@ -5,13 +5,11 @@
  */
 package dataSourceReader;
 
-import com.google.inject.Inject;
 import component.IComponent;
 import dataSource.IDataSource;
 import dataSource.IDataSourceProvider;
 import java.util.ArrayList;
 import java.util.Collection;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
@@ -20,7 +18,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class DatasourceReader implements IDatasourceReader{
     
-    @Inject
     public DatasourceReader(IDataSourceProvider dataSources){
         _dataSources = dataSources.Get();
     }

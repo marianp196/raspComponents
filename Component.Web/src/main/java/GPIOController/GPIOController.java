@@ -32,7 +32,7 @@ public class GPIOController {
         PinState pinState = mapper.readValue(body, PinState.class);
         
         IComponentProvider provider = new ApllicationBuilder().Build();
-        IComponent comp = provider.<PinState, PinState>Get("gpio", id);
+        IComponent comp = provider.<PinState, PinState>Get(id, "gpio");
         
         return Response.ok(mapper.writeValueAsString(comp.Excute(pinState)), MediaType.APPLICATION_JSON).build();
     }

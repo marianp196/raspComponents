@@ -5,11 +5,8 @@
  */
 package applicationBuilder;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-import injection.ComponentPoolConfiguration;
-import java.util.ArrayList;
+import factory.ComponentProviderFactory;
+import factory.IComponentProviderFactory;
 import services.IComponentProvider;
 
 /**
@@ -17,20 +14,15 @@ import services.IComponentProvider;
  * @author marian
  */
 public class ApllicationBuilder {
-    public IComponentProvider Build(){
-        if(_injector == null)        
-            _injector = getInjector();
-        System.out.println("fkdjfid");
-        return _injector.getInstance(IComponentProvider.class);
-    }
-
-    private Injector getInjector() {
-        ArrayList<Module> configuartions = new ArrayList<Module>();
-        configuartions.add(new WebConfiguration());
-        configuartions.add(new ComponentPoolConfiguration());
-        Injector injector = Guice.createInjector(configuartions);
-        return injector;
+    public IComponentProvider Build() throws Exception{
+        if(_componentProvider == null) {
+            IComponentProviderFactory factory = new ComponentProviderFactory();
+            _componentProvider = factory.Build(new DataSourceProvider());
+        }       
+            
+       
+        return _componentProvider;
     }
     
-    private Injector _injector;
+    private IComponentProvider _componentProvider;
 }
