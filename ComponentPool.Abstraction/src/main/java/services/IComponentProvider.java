@@ -10,6 +10,8 @@ package services;
 
 
 import component.IComponent;
+import component.IReadableComponent;
+import component.IWriteableComponent;
 
 /**
  *
@@ -25,7 +27,8 @@ public interface IComponentProvider {
     * @return
     * @throws Exception 
     */
-    <TState, TResult> IComponent<TState, TResult> Get(String id, String groupId) throws Exception;
+    <TState, TResult> IWriteableComponent<TState, TResult> GetExecuteable(String id, String groupId) throws Exception;
+    <TResult> IReadableComponent<TResult> GetReadable(String id, String groupId) throws Exception;
     
     /**
      * Lädt alle Components neu in den internen Cache

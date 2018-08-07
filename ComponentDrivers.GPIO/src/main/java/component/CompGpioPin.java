@@ -6,19 +6,19 @@
 package component;
 
 import gpio.ControlerFactory;
-import gpioDriver.GpioPin;
-import javax.naming.ldap.ControlFactory;
+import gpio.Enums.EModus;
+import gpio.Enums.EStatus;
+import gpio.Interfaces.IControler;
 
 /**
  *
  * @author marian
  */
-public class CompGpioPin implements IComponent<PinState, PinState>{
+public class CompGpioPin implements IWriteableComponent<PinState, PinState>{
 
-    public CompGpioPin(String id, int pin){
-        _id = id;
+    public CompGpioPin(int pin){
+        _id = String.valueOf(pin);
         _pin = pin;
-        //_gpioPin = new GpioPin(ControlerFactory.getInstance(), _pin);
     }
     
     @Override
@@ -32,27 +32,31 @@ public class CompGpioPin implements IComponent<PinState, PinState>{
     }
 
     @Override
-    public PinState Excute(PinState state) throws Exception {
-        return state;
+    public PinState Write(PinState state) throws Exception {
+
+        //Hier muss neues Interface her
+        IControler controler = ControlerFactory.getInstance();
         
-        /*_gpioPin.SetMode(state.Out);
+        controler.register(_pin, EModus.Out);
+        controler.setSate(_pin, state.State ? EStatus.High : EStatus.Low);
+        
+        state.Out = true;
+        return state;
+    }
+    
+     @Override
+    public PinState Read() throws Exception {
+        IControler controler = ControlerFactory.getInstance();
+        
+        controler.register(_pin, EModus.In);
         
         PinState result = new PinState();
-        if(state.Out){
-            if(state.State == null)
-                throw new Exception("state is null");
-            _gpioPin.SetState(state.State);
-            result.Out = true;
-            result.State = state.State;            
-        }else{
-            result.State = _gpioPin.GetState();
-            result.Out = false;
-        }
+        result.Out = false;
+        result.State = controler.getState(_pin);
         
-        return result;*/
+        return result;
     }
     
     private String _id;
     private int _pin;
-    private GpioPin _gpioPin;
 }

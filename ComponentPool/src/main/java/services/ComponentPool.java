@@ -6,11 +6,13 @@
 package services;
 
 import component.IComponent;
+import component.IReadableComponent;
 import dataSourceReader.IDatasourceReader;
 import java.security.KeyException;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import component.IWriteableComponent;
 
 /**
  *
@@ -30,22 +32,15 @@ public class ComponentPool implements IComponentProvider{
     }
 
     @Override
-    public synchronized <TState, TResult> IComponent<TState, TResult> Get(String id, String groupId) throws Exception {
-        if(id == null)
-            throw new NullPointerException("id");
-        if(groupId == null)
-            throw new NullPointerException("groupId");
-        
-        checkForReload();
-        
-        IComponent result = getComponent(_cachedComponents,groupId, id);
-        
-        if(result == null)
-            throw new KeyException("compnenet doesn't exists");
-        
-        return (IComponent<TState, TResult>) result;//ToDO Exceptio definieren wenn typ nicht passt
+    public synchronized <TState, TResult> IWriteableComponent<TState, TResult> GetExecuteable(String id, String groupId) throws Exception {
+        return (IWriteableComponent<TState, TResult>)get(id, groupId); //richtig mit fehlern umgehen ToDO
     }
 
+    @Override
+    public synchronized <TResult> IReadableComponent<TResult> GetReadable(String id, String groupId) throws Exception {
+         return (IReadableComponent<TResult>)get(id, groupId);//richtig mit fehlern umgehen ToDO
+    }
+      
     @Override
     public synchronized void Reload(String id, String groupId) throws Exception {
          if(id == null)
@@ -69,6 +64,23 @@ public class ComponentPool implements IComponentProvider{
             _cachedComponents.add(newComponent);
         
     } 
+    
+     private IComponent get(String id, String groupId) throws Exception {
+        if(id == null)
+            throw new NullPointerException("id");
+        if(groupId == null)
+            throw new NullPointerException("groupId");
+        
+        checkForReload();
+        
+        IComponent result = getComponent(_cachedComponents,groupId, id);
+        
+        if(result == null)
+            throw new KeyException("compnenet doesn't exists");
+        
+        return result;
+    }
+
         
     private IComponent getComponent(Collection<IComponent> list, String groupId, String id){
         //ToDO hier methode mit Datasourcereader sharen
