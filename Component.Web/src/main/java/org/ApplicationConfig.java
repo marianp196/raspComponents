@@ -29,7 +29,8 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(GPIOController.GPIOController.class);
+        resources.add(controller.GPIOController.class);
+        resources.add(controller.I2CController.class);
         resources.add(testControler.Controller.class);
     }
     

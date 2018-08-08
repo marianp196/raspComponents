@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GPIOController;
+package controller;
 
 /**
  *
@@ -46,7 +46,7 @@ public class GPIOController {
                     MediaType.APPLICATION_JSON).build();
         
         }catch(KeyException exception){
-            return Response.status(400).build();
+            return Response.status(404).build();
         } 
     }
     
@@ -60,21 +60,16 @@ public class GPIOController {
        
         try{
             IReadableComponent<PinState> comp = 
-                provider.<PinState>GetReadable(id, "gpio"); 
-          
-            System.setProperty("pi4jdebug", "true");
+                provider.<PinState>GetReadable(id, "gpio");
             
             return Response.ok(mapper.writeValueAsString(comp.Read()), 
                     MediaType.APPLICATION_JSON).build();
            // return Response.ok(mapper.writeValueAsString(new PinState()),MediaType.APPLICATION_JSON).build();
         }
         catch(KeyException exception){
-            return Response.status(400).build();
+            return Response.status(404).build();
         } 
-        catch(Exception e){
-            return Response.status(400).build();
-        }
-        
+               
     }
     
     
