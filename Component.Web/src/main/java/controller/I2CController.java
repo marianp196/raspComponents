@@ -5,17 +5,11 @@
  */
 package controller;
 
-import I2CBus.BusI2C;
 import I2CBus.DeviceNotFoundException;
 import I2CBus.IBusI2C;
-import applicationBuilder.ApllicationBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import component.IReadableComponent;
-import component.PinState;
 import factory.BusI2CFactory;
-import factory.IBusI2CFactory;
 import java.io.IOException;
-import java.security.KeyException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -25,7 +19,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import services.IComponentProvider;
 
 /**
  *
@@ -51,7 +44,7 @@ public class I2CController {
         try{
            bus.Write(device, register, dto.value); 
         }catch(DeviceNotFoundException e){
-            return Response.status(Status.BAD_REQUEST).build();
+            return Response.status(Status.NOT_FOUND).build();
         }        
         
         return Response.ok().build();
@@ -68,7 +61,7 @@ public class I2CController {
         try{
             value = bus.Read(device, register);
         }catch(DeviceNotFoundException e){
-            return Response.status(Status.BAD_REQUEST).build();
+            return Response.status(Status.NOT_FOUND).build();
         }
                 
         I2CDto dto = new I2CDto();
