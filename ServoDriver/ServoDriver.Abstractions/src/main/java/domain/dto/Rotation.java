@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package factory;
-
-import domain.PVMBoard;
+package domain.dto;
 
 /**
  *
  * @author marian
  */
-public interface IPvmBoardFactory {
-
-    PVMBoard Build(int frequence) throws Exception;
-    
+public class Rotation {
+    public double Degree;
+    public double MaxRotationDegree;
 }

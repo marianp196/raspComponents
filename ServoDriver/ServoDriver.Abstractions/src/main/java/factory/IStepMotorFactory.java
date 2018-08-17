@@ -5,14 +5,13 @@
  */
 package factory;
 
-import domain.PVMBoard;
+import domain.IStepMotor;
+import domain.StepMotor;
 
 /**
  *
  * @author marian
  */
-public interface IPvmBoardFactory {
-
-    PVMBoard Build(int frequence) throws Exception;
-    
+public interface IStepMotorFactory {
+    IStepMotor Build(int pin) throws Exception;
 }

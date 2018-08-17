@@ -16,22 +16,19 @@ import driver.PCA9685.PCA9685;
  */
 public class PvmBoardFactory implements IPvmBoardFactory {
     
-   public PvmBoardFactory(IBusI2CFactory factory){
+   public PvmBoardFactory(IBusI2CFactory factory, int device){
        _factory = factory;
    }
    
    //ToDo hier muss das noch anders. Was mit i2c adresse  
     @Override
-   public PVMBoard Build(EHardware hardwareType, int frequence) throws Exception{
-       if(hardwareType == EHardware.PCA9685)
-       {
-           IBusI2C i2c = _factory.Create();
-           IPVMBoardDriver driver = new PCA9685(i2c);
+   public PVMBoard Build(int frequence) throws Exception{
+      
+        IBusI2C i2c = _factory.Create();
+        IPVMBoardDriver driver = new PCA9685(i2c);
                                  
-           return new PVMBoard(driver, frequence);
-       }
-       
-       throw new UnsupportedOperationException("HardwareType not supported");
+        return new PVMBoard(driver, frequence);
+    
    }
    
    private IBusI2CFactory _factory;

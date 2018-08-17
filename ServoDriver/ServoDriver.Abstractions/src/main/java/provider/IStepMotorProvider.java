@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package factory;
+package provider;
 
-import domain.PVMBoard;
+import domain.IStepMotor;
 
 /**
  *
  * @author marian
  */
-public interface IPvmBoardFactory {
-
-    PVMBoard Build(int frequence) throws Exception;
-    
+public interface IStepMotorProvider {
+    IStepMotor Get(int pin) throws Exception;
 }
